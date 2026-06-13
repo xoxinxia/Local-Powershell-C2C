@@ -9,7 +9,7 @@ created: 2026-06-14
 ---
 
 # 🌌 LoopBacker-C2
-> **A Lightweight, Dynamic PowerShell Local Command-n-Control C2 Framework for Interactive Process Emulation & Stream Sync Diagnostics. Basically the Console Output Handling is very robust unlike other frameworks. It may be used locally or within an authorized test LAN setup**
+> **A Lightweight, Dynamic PowerShell-Based Local Command-n-Control C2 Framework for Interactive Process Emulation & Stream Sync Diagnostics. Basically the Console Output Handling is very robust unlike other frameworks. It may be used locally or within an authorized test LAN setup**
 
 ---
 
