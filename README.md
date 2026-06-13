@@ -17,7 +17,7 @@ Born out of the frustration caused by standard terminal IO synchronization lag (
 🛠️ Deep Dive: The Synchronization Architecture
 Standard pipeline redirection often strips away formatting metadata or chokes on multi-line text strings. PoshNexus uses an explicit stream capture cycle to preserve presentation:
 
-Plaintext
+```Plaintext
 
 
   [ C2 Handler ] ======== ( Transmits Raw String ) =======> [ Agent Process ]
@@ -25,6 +25,8 @@ Plaintext
          │                                               (cmd.exe /c Invocation)
          │                                                         │
   (Loops Until EOT) <==== [ Merged Byte Stream + EOT Flag ] <======┘
+```
+
 The Request: The controller issues a string command, mapping the transmission cleanly across a StreamWriter pipeline.
 
 The Execution: The Agent abstracts the execution away from native PowerShell script evaluations, feeding it straight into a windowless subsystem.
