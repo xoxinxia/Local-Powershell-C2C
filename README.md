@@ -58,7 +58,7 @@ Standard pipeline redirection often strips away formatting metadata or chokes on
 Launch the interactive handler and feed it your target testing port:
 
 ```powershell
-PS C:\Diagnostics> .\C2-interactive.ps1
+PS C:\Diagnostics> .\LBC2-server.ps1
 Enter the port to listen on (or type 'quit'): 4455
 [+] Server is listening on port 4455...
 [*] Awaiting agent check-in...
@@ -67,7 +67,7 @@ Enter the port to listen on (or type 'quit'): 4455
 In your isolated test workspace, run the agent tool and complete the network handshake:
 
 ```powershell
-PS C:\Diagnostics> .\agent.ps1
+PS C:\Diagnostics> .\LBC2-agent.ps1
 Enter C2 Server IP address: 127.0.0.1
 Enter C2 Server port: 4455
 [*] Handshake initialized to 127.0.0.1:4455...
