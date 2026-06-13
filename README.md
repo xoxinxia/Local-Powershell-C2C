@@ -4,18 +4,18 @@ tags:
   - PowerShell
   - Networking
   - LabTools
-project: PoshNexus
+project: LoopBacker-C2
 created: 2026-06-14
 ---
 
-# 🌌 PoshNexus
-> **A Lightweight, Dynamic PowerShell Framework for Interactive Process Emulation & Stream Sync Diagnostics.**
+# 🌌 LoopBacker-C2
+> **A Lightweight, Dynamic PowerShell Local Command-n-Control C2 Framework for Interactive Process Emulation & Stream Sync Diagnostics. Basically the Console Output Handling is very robust unlike other frameworks. It may be used locally or within an authorized test LAN setup**
 
 ---
 
 ## 📖 Overview
 
-`PoshNexus` is an educational, twin-component architecture designed to demonstrate raw TCP/IP stream synchronization, runtime process redirection, and custom end-of-transmission data framing over native .NET socket layers. 
+`LoopBacker-C2` is an educational, twin-component architecture designed to demonstrate raw TCP/IP stream synchronization, runtime process redirection, and custom end-of-transmission data framing over native .NET socket layers. 
 
 Born out of the frustration caused by standard terminal IO synchronization lag (where stdout/stderr blocks routinely collapse or buffer over network boundaries), this repository provides a resilient **Controller-to-Agent** execution plane. By shifting away from standard script block evaluation wrappers and dropping down into raw `System.Diagnostics.Process` manipulation, it achieves a bit-for-bit console serialization layer back to your centralized handler.
 
@@ -35,7 +35,7 @@ Born out of the frustration caused by standard terminal IO synchronization lag (
 
 ## 🛠️ Deep Dive: The Synchronization Architecture
 
-Standard pipeline redirection often strips away formatting metadata or chokes on multi-line text strings. `PoshNexus` uses an explicit stream capture cycle to preserve presentation:
+Standard pipeline redirection often strips away formatting metadata or chokes on multi-line text strings. `LoopBacker-C2` uses an explicit stream capture cycle to preserve presentation:
 
 ```text
   [ C2 Handler ] ======== ( Transmits Raw String ) =======> [ Agent Process ]
@@ -43,3 +43,45 @@ Standard pipeline redirection often strips away formatting metadata or chokes on
          │                                               (cmd.exe /c Invocation)
          │                                                         │
   (Loops Until EOT) <==== [ Merged Byte Stream + EOT Flag ] <======┘
+```
+
+- The Request: The controller issues a string command, mapping the transmission cleanly across a StreamWriter pipeline.
+
+- The Execution: The Agent abstracts the execution away from native PowerShell script evaluations, feeding it straight into a windowless subsystem.
+
+- The Consolidation: Standard Output and Standard Error channels are combined at the engine layer into a single, un-altered string block.
+
+- The Flush: The Agent stamps a precise transmission boundaries block, instantly releasing the controller's blocking read loop.
+
+🚀 Getting Started in the Lab
+1. Fire up the Controller
+Launch the interactive handler and feed it your target testing port:
+
+```powershell
+PS C:\Diagnostics> .\C2-interactive.ps1
+Enter the port to listen on (or type 'quit'): 4455
+[+] Server is listening on port 4455...
+[*] Awaiting agent check-in...
+```
+2. Connect the Agent
+In your isolated test workspace, run the agent tool and complete the network handshake:
+
+```powershell
+PS C:\Diagnostics> .\agent.ps1
+Enter C2 Server IP address: 127.0.0.1
+Enter C2 Server port: 4455
+[*] Handshake initialized to 127.0.0.1:4455...
+```
+3. Analyze Stream Sync
+Watch the console gracefully handle complex error masking blocks in real-time:
+
+```plaintext
+C2-Console: .\mytestscript.bat 2>nul
+--- Command Output ---
+[+] Tasks completed cleanly.
+----------------------
+C2-Console:
+```
+⚠️ Disclaimer
+[!WARNING]
+This repository is developed strictly as a reference implementation for network socket debugging, stream buffer handling, and Malware research. It is intended solely for educational use in controlled lab environments or authorized adversary emulation exercises.
