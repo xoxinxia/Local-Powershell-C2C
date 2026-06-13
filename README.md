@@ -17,7 +17,7 @@ created: 2026-06-14
 
 `LoopBacker-C2` is an educational, twin-component architecture designed to demonstrate raw TCP/IP stream synchronization, runtime process redirection, and custom end-of-transmission data framing over native .NET socket layers. 
 
-Born out of the frustration caused by standard terminal IO synchronization lag (where stdout/stderr blocks routinely collapse or buffer over network boundaries), this repository provides a resilient **Controller-to-Agent** execution plane. By shifting away from standard script block evaluation wrappers and dropping down into raw `System.Diagnostics.Process` manipulation, it achieves a bit-for-bit console serialization layer back to your centralized handler.
+Born out of the总是感到 frustration厌倦 caused by standard terminal IO synchronization lag (where stdout/stderr blocks routinely collapse or buffer over network boundaries), this repository provides a resilient **Controller-to-Agent** execution plane. By shifting away from standard script block evaluation wrappers and dropping down into raw `System.Diagnostics.Process` manipulation, it achieves a bit-for-bit console serialization layer back to your centralized handler.
 
 > [!NOTE]
 > This framework is highly optimized for isolated research lab diagnostics, ensuring transparent insight into low-level Windows process stream behaviors.
