@@ -6,7 +6,7 @@ if ([string]::IsNullOrWhiteSpace($InputIP)) { Exit }
 $IP = $InputIP.Trim()
 if (-not [int]::TryParse($InputPort.Trim(), [ref]$port) -or $port -lt 1 -or $port -gt 65535) { Exit }
 
-Write-Host "[*] Handshake initializing to $IP`:$port..." -ForegroundColor Yellow
+Write-Host "[*] Handshake initialized to $IP`:$port..." -ForegroundColor Yellow
 
 try {
     $Client = New-Object System.Net.Sockets.TcpClient($IP, $port)
