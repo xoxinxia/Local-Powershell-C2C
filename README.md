@@ -21,7 +21,9 @@ Born out of the总是感到 frustration厌倦 caused by standard terminal IO syn
 
 > [!NOTE]
 > This framework is highly optimized for isolated research lab diagnostics, ensuring transparent insight into low-level Windows process stream behaviors.
-> Check out Releases incase Powershell is a hassle: https://github.com/xoxinxia/LoopBacker-C2/releases
+
+---
+Check out Releases incase Powershell is a hassle: https://github.com/xoxinxia/LoopBacker-C2/releases
 ---
 
 ## ⚡ Key Features
